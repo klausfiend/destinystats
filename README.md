@@ -7,6 +7,7 @@ directory as the destinystats.py script itself. It follows standard INI
 conventions and uses the native Python module for parsing. You will need to
 provide the following attributes:
 
+<pre>
 [api]
 root_url=https://www.bungie.net/platform/destiny/
 api_key=<your API key>
@@ -22,6 +23,7 @@ dbport=<InfluxDB port>
 dbuser=<InfluxDB user with write privileges>
 dbpass=<password for this InfluxDB user>
 dbname=<InfluxDB database name>
+</pre>
 
 Once you've created the appropriate INI file and have a running InfluxDB
 backend, populate the database by running 'destinystats.py'. By default, it
