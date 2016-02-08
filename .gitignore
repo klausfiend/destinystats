@@ -6,6 +6,12 @@ __pycache__/
 # C extensions
 *.so
 
+# INI files
+*.ini
+
+# Vim garbage
+*.sw?
+
 # Distribution / packaging
 .Python
 env/
