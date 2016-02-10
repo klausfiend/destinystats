@@ -110,13 +110,14 @@ character_info = [{'id': str(c['characterBase']['characterId']),
 # Fetch character activity stats from (today - interval days) for each character.
 date_in_sec = int(datetime.date.fromordinal(datetime.date.today().toordinal() - interval).strftime("%s"))
 date = datetime.date.fromtimestamp(date_in_sec).strftime("%F")
+date_in_nsec = date_in_sec * 1000000000
 for c in character_info:
     query_url = root_url + 'Stats/' + membership_type + '/' + membership_id + '/' + c['id'] + \
             '/?periodType=1&daystart=' + date + '&dayend=' + date + '&modes=' + ','.join(my_activity_types)
     if debug == True:
         print query_url
     # Create the skeletal data point
-    influx_data = [ { 'measurement': c['class'] + '_' + c['id'], 'time': date_in_sec, 'fields': {} } ]
+    influx_data = [ { 'measurement': c['class'] + '_' + c['id'], 'time': date_in_nsec, 'fields': {} } ]
     response = request.open(query_url)
     answer = json.loads(response.read())
     if answer['ErrorStatus'] != 'Success':
