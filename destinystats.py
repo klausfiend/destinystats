@@ -63,6 +63,12 @@ dbuser = ConfigSectionMap('influx')['dbuser']
 dbpass = ConfigSectionMap('influx')['dbpass']
 dbname = ConfigSectionMap('influx')['dbname']
 
+# Sanity check activity types to make sure they're known to the Destiny API
+for activity_type in my_activity_types:
+    if not set([activity_type]).issubset(set(activity_types)):
+       print "Unsupported activity in config file: %s" % activity_type
+       sys.exit(1)
+
 # Option processing happens here.
 parser = argparse.ArgumentParser()
 parser.add_argument("-d", "--debug", action='store_true', help="print debug information")
